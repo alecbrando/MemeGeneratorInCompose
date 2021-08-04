@@ -61,9 +61,9 @@ class MainViewModel
                         _catImage.value = repository.getCatImage(filter.value)
                     } else {
                         _catImage.value = repository.getCatImageWithText(
-                            text.value,
-                            filter.value,
-                            text.value.length,
+                            text = text.value,
+                            filter = filter.value,
+                            size = text.value.length,
                             color = "White"
                         )
                     }
@@ -73,8 +73,8 @@ class MainViewModel
                         _catImage.value = repository.getCatGif(filter.value)
                     } else {
                         _catImage.value = repository.getCatGifWithText(
-                            text.value,
-                            filter.value,
+                            text = text.value,
+                            filter = filter.value,
                             size = text.value.length,
                             color = "White"
                         )
