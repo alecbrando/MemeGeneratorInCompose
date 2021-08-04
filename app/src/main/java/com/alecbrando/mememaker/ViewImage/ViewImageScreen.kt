@@ -3,6 +3,7 @@ package com.alecbrando.mememaker.ViewImage
 import android.graphics.Insets.add
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -44,7 +45,7 @@ fun ViewImageScreen(
         }
         .build()
 
-
+    Log.d("URL", extension)
     val painter = rememberImagePainter(
         data = BASE_URL + extension,
         builder = {

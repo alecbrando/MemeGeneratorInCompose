@@ -24,7 +24,7 @@ class MainViewModel
     private val _text = mutableStateOf("")
     val text : State<String> get() = _text
 
-    val filterOptions = listOf("None", "Blur", "Mono", "Sepia", "Negative", "Paint", "Pixel")
+    val filterOptions = listOf("none", "blur", "mono", "sepia", "negative", "paint", "pixel")
 
     private val _filter = mutableStateOf(filterOptions[0])
     val filter : State<String> get() = _filter
@@ -58,7 +58,7 @@ class MainViewModel
             when (_media.value) {
                 Media.IMAGE -> {
                     if (text.value.isEmpty()) {
-                        _catImage.value = repository.getCatImage(filter.value)
+                        _catImage.value = repository.getCatImage(filter = filter.value)
                     } else {
                         _catImage.value = repository.getCatImageWithText(
                             text = text.value,
@@ -70,7 +70,7 @@ class MainViewModel
                 }
                 Media.GIF -> {
                     if (text.value.isEmpty()) {
-                        _catImage.value = repository.getCatGif(filter.value)
+                        _catImage.value = repository.getCatGif(filter = filter.value)
                     } else {
                         _catImage.value = repository.getCatGifWithText(
                             text = text.value,

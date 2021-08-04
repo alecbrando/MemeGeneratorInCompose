@@ -12,7 +12,7 @@ class Repository(
 
     suspend fun getCatImage(filter: String): Resource<Cat> {
         return try {
-            val res = api.getCatImage(filter)
+            val res = api.getCatImage(filter = filter)
             if (res.isSuccessful) {
                 Resource.Success(res.body()!!)
             } else {
@@ -30,7 +30,7 @@ class Repository(
         color: String
     ): Resource<Cat> {
         return try {
-            val res = api.getCatImageWithText(filter, text, size = size, color = color)
+            val res = api.getCatImageWithText(filter = filter, text = text, size = size, color = color)
             if (res.isSuccessful) {
                 Resource.Success(res.body()!!)
             } else {
@@ -44,7 +44,7 @@ class Repository(
 
     suspend fun getCatGif(filter: String): Resource<Cat> {
         return try {
-            val res = api.getCatGif(filter)
+            val res = api.getCatGif(filter = filter)
             if (res.isSuccessful) {
                 Resource.Success(res.body()!!)
             } else {
