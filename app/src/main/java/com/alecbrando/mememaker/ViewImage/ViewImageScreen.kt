@@ -23,6 +23,15 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import com.alecbrando.mememaker.util.Constants.BASE_URL
 import kotlinx.coroutines.launch
+import android.content.Intent
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.core.content.ContextCompat
+
+import androidx.core.content.ContextCompat.startActivity
+import coil.compose.ImagePainter.State.Empty.painter
+import java.io.File
+
 
 @ExperimentalCoilApi
 @Composable
@@ -30,7 +39,7 @@ fun ViewImageScreen(
     navController: NavController,
     extension : String
 ) {
-
+    val context = LocalContext.current
     var loading by remember {
         mutableStateOf(true)
     }
@@ -57,6 +66,10 @@ fun ViewImageScreen(
     if (painter.state is ImagePainter.State.Success) {
         loading = false
     }
+    val shareIntent = Intent(Intent.ACTION_SEND);
+    shareIntent.type = "text/plain";
+    shareIntent.putExtra(Intent.EXTRA_TEXT, BASE_URL + extension);
+
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -79,5 +92,18 @@ fun ViewImageScreen(
                 CircularProgressIndicator(Modifier.align(Alignment.Center))
             }
         }
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        if (!loading) {
+            Button(onClick = {
+                context.startActivity(Intent.createChooser(shareIntent, "Share link using"))
+            },
+               
+            ) {
+                Text(
+                    text = "Share"
+                )
+            }
+        }
+
     }
 }

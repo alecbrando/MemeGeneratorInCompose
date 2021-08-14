@@ -50,9 +50,6 @@ class MainViewModel
 
 
     fun getData() {
-        Log.d("VALUES", text.value)
-        Log.d("VALUES", filter.value)
-        Log.d("VALUES", media.value.toString())
         _catImage.value = Resource.Loading(null)
         viewModelScope.launch {
             when (_media.value) {
